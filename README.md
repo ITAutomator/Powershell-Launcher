@@ -5,3 +5,4 @@ Easily launch your powershell script by double-clicking. Avoids execution-policy
 See User guide (pdf) for more information: <br/>
 https://github.com/ITAutomator/Powershell-Launcher/blob/main/Powershell%20Launcher%20Readme.pdf
 
+To Download: Click the green Code button (above) and click Download Zip
