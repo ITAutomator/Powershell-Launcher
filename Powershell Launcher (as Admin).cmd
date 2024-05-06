@@ -59,7 +59,7 @@ if /I "%quiet%" == "false" (ping -n 3 127.0.0.1>nul) else (echo [-quiet: 2 secon
 set exename="powershell.exe"
 if exist "%ProgramFiles%\PowerShell\7\pwsh.exe" set psh_menu=true
 if [%psh_menu%]==[] goto :PSH_MENU_DONE
-CHOICE /T 5 /C 57 /D 7 /N /M "Multiple versions detected. Select Powershell Version [5] or [7 Default] 5 secs:"
+CHOICE /T 5 /C 57 /D 7 /N /M "Multiple PS versions detected. Select PowerShell Version [5] or [7 Default] 5 secs:"
 if %ERRORLEVEL%==1 echo Powershell 5 & goto :PSH_MENU_DONE
 if %ERRORLEVEL%==2 echo Powershell 7 & set exename="%ProgramFiles%\PowerShell\7\pwsh.exe" & goto :PSH_MENU_DONE
 :PSH_MENU_DONE
