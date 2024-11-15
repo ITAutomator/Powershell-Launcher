@@ -53,7 +53,7 @@ if /I "%checkadmin%" == "false" goto :ADMIN_DONE
 :: check admin
 net session >nul 2>&1
 if %errorLevel% == 0 (echo [Admin confirmed]) else (echo ERR: Admin denied. Right-click and run as administrator. & pause & goto :EOF)
-if /I "%quiet%" == "false" (ping -n 3 127.0.0.1>nul) else (echo [-quiet: 2 seconds...] & ping -n 3 127.0.0.1>nul)
+if /I "%quiet%" == "false" (timeout /t 2 > nul) else (echo [-quiet: 2 seconds...] & timeout /t 2 > nul)
 :ADMIN_DONE
 :: powershell version
 set exename="powershell.exe"
@@ -63,10 +63,10 @@ CHOICE /T 5 /C 57 /D 7 /N /M "Multiple PS versions detected. Select PowerShell V
 if %ERRORLEVEL%==1 echo Powershell 5 & goto :PSH_MENU_DONE
 if %ERRORLEVEL%==2 echo Powershell 7 & set exename="%ProgramFiles%\PowerShell\7\pwsh.exe" & goto :PSH_MENU_DONE
 :PSH_MENU_DONE
-ping -n 3 127.0.0.1>nul
+timeout /t 2 > nul
 cls
 %exename% -NoProfile -ExecutionPolicy Bypass -Command "write-host [Starting PS1 called from CMD] -Foregroundcolor green;& '%ps1file_double%' %params%"
 ::%exename% -NoProfile -ExecutionPolicy Bypass -Command "write-host [Starting PS1 called from CMD] -Foregroundcolor green; Set-Variable -Name PSCommandPath -value '%ps1file_double%';& '%ps1file_double%' %params%"
 @echo off
 echo -- Done with Powershell Launcher.cmd
-if /I "%quiet%" == "false" (ping -n 3 127.0.0.1>nul) else (echo [-quiet: 2 seconds...] & ping -n 3 127.0.0.1>nul)
+if /I "%quiet%" == "false" (timeout /t 2 > nul) else (echo [-quiet: 2 seconds...] & timeout /t 2 > nul)
